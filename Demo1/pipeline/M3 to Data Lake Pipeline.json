@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "M3 to Data Lake Pipeline",
 	"properties": {
 		"activities": [
 			{
