@@ -1,0 +1,29 @@
+{
+	"name": "OOLINE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataLakeM3",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "OOLINE",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "m3",
+					"type": "Expression"
+				},
+				"fileSystem": "m3tables"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
