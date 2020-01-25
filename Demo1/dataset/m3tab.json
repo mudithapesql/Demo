@@ -1,0 +1,12 @@
+{
+	"name": "m3tab",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "M3",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	}
+}
