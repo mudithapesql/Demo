@@ -1,0 +1,76 @@
+{
+	"name": "Until Current Date",
+	"properties": {
+		"activities": [
+			{
+				"name": "Load Data until current date",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "Lookup LastLoaded Date",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@greater(substring(string(activity('Lookup for Last Load Date').output.firstRow),9,10) , adddays(utcnow(),-21,'yyyy-MM-dd'))",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Execute Pipeline1",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "m3 to datalake",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"LoadingDate": {
+										"value": "@substring(string(activity('Lookup LastLoaded Date').output.firstRow),9,10)",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					],
+					"timeout": "7.00:00:00"
+				}
+			},
+			{
+				"name": "Lookup LastLoaded Date",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": {
+							"value": "SELECT CAST(CONVERT(DATE,[LASTLOADDATE],103) AS DATE) AS [Date]   FROM [INTEGRATION].[Lastmodified] ",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00"
+					},
+					"dataset": {
+						"referenceName": "m3tab",
+						"type": "DatasetReference"
+					}
+				}
+			}
+		],
+		"annotations": []
+	}
+}
