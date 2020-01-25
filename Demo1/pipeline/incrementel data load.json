@@ -28,6 +28,32 @@
 						"type": "DatasetReference"
 					}
 				}
+			},
+			{
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Lookup lastmodified",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "m3 to datalake",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"LoadingDate": {
+							"value": "@substring(string(activity('Lookup lastmodified').output.firstRow),9,10)",
+							"type": "Expression"
+						}
+					}
+				}
 			}
 		],
 		"variables": {
