@@ -16,11 +16,11 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
-					"value": "OOLINE",
+					"value": "@dataset().LoadingDate",
 					"type": "Expression"
 				},
 				"folderPath": {
-					"value": "m3",
+					"value": "OOLINE/@{formatDateTime(dataset().LoadingDate,'yyyy')}/@{formatDateTime(dataset().LoadingDate,'MM')}",
 					"type": "Expression"
 				},
 				"fileSystem": "m3tables"
