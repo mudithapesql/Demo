@@ -1,0 +1,16 @@
+{
+	"name": "M3",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=FTD-NB-MUDITHA;initial catalog=M3FDBPRD;user id=sqladmin",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4YmY4MzRjYS0xNjU1LTRkOWYtYjUyOS0yYTAwYmQ0ZjUyZDkiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "M3Runtime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
