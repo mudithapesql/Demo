@@ -8,6 +8,61 @@
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
+					"activities": [
+						{
+							"name": "Lookup LastLoaded Date",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlServerSource",
+									"sqlReaderQuery": {
+										"value": "SELECT CAST(CONVERT(DATE,[LASTLOADDATE],103) AS DATE) AS [Date]   FROM [INTEGRATION].[Lastmodified] ",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00"
+								},
+								"dataset": {
+									"referenceName": "m3tab",
+									"type": "DatasetReference"
+								}
+							}
+						},
+						{
+							"name": "push m3 to data lake",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "Lookup LastLoaded Date",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "m3 to datalake",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"LoadingDate": {
+										"value": "@substring(string(activity('Lookup LastLoaded Date').output.firstRow),9,10)",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					],
 					"timeout": "7.00:00:00"
 				}
 			}
