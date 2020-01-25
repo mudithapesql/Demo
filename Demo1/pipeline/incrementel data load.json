@@ -18,7 +18,7 @@
 					"source": {
 						"type": "SqlServerSource",
 						"sqlReaderQuery": {
-							"value": "SELECT TOP (1) [LASTLOADDATE]\n  FROM [M3FDBPRD].[INTEGRATION].[Lastmodified]",
+							"value": "SELECT CAST(CONVERT(DATE,[LASTLOADDATE],103) AS DATE) AS [LASTLOADDATE]   FROM [INTEGRATION].[Lastmodified] ",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00"
