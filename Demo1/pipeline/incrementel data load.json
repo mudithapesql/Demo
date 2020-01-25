@@ -46,13 +46,7 @@
 						"referenceName": "m3 to datalake",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"LoadingDate": {
-							"value": "@substring(string(activity('Lookup lastmodified').output.firstRow),9,10)",
-							"type": "Expression"
-						}
-					}
+					"waitOnCompletion": true
 				}
 			}
 		],
