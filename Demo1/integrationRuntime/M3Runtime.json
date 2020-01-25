@@ -1,0 +1,6 @@
+{
+	"name": "M3Runtime",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
