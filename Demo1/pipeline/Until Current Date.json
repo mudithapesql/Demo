@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@greater(substring(string(activity('Lookup for Last Load Date').output.firstRow),9,10) , adddays(utcnow(),-21,'yyyy-MM-dd'))",
+						"value": "@greater(substring(string(activity('Lookup LastLoaded Date').output.firstRow),9,10) , adddays(utcnow(),-21,'yyyy-MM-dd')) ",
 						"type": "Expression"
 					},
 					"activities": [
