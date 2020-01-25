@@ -8,6 +8,10 @@
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
+					"expression": {
+						"value": "@greater(substring(string(activity('Lookup LastLoaded Date').output.firstRow),9,10) , adddays(utcnow(),-21,'yyyy-MM-dd')) ",
+						"type": "Expression"
+					},
 					"activities": [
 						{
 							"name": "Lookup LastLoaded Date",
