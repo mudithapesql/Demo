@@ -45,7 +45,13 @@
 				"outputs": [
 					{
 						"referenceName": "OOLINE",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"LoadingDate": {
+								"value": "@pipeline().parameters.LoadingDate",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
