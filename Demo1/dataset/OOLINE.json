@@ -5,6 +5,11 @@
 			"referenceName": "DataLakeM3",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"LoadingDate": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
