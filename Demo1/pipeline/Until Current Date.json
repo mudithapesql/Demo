@@ -65,6 +65,42 @@
 									}
 								}
 							}
+						},
+						{
+							"name": "update last load date",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "push m3 to data lake",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[UpdateM3LastLoadedDate]",
+								"storedProcedureParameters": {
+									"LASTLOADDT": {
+										"value": {
+											"value": "@substring(string(activity('Lookup LastLoaded Date').output.firstRow),9,10) ",
+											"type": "Expression"
+										},
+										"type": "String"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "M3",
+								"type": "LinkedServiceReference"
+							}
 						}
 					],
 					"timeout": "7.00:00:00"
